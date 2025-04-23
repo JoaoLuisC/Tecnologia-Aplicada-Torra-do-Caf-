@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266HTTPClient.h>
 #include <DNSServer.h>
 #include <EEPROM.h>
 
@@ -11,6 +12,11 @@ DNSServer dnsServer;
 String ssid = "";
 String password = "";
 String deviceKey = "";
+
+// Variáveis de controle
+bool conectado = false;
+unsigned long ultimoEnvio = 0;
+int contador = 0;
 
 // Página de configuração
 const char* htmlForm = R"rawliteral(
@@ -74,6 +80,7 @@ void handleSave() {
     Serial.println("\n✅ Conectado com sucesso!");
     Serial.print("IP do dispositivo: ");
     Serial.println(WiFi.localIP());
+    conectado = true;
   } else {
     Serial.println("\n❌ Falha ao conectar. Reiniciando modo AP.");
     delay(3000);
@@ -103,4 +110,31 @@ void setup() {
 void loop() {
   dnsServer.processNextRequest();
   server.handleClient();
+
+  if (conectado && WiFi.status() == WL_CONNECTED) {
+    unsigned long agora = millis();
+    if (agora - ultimoEnvio > 300) { // Envia a cada 5 segundos
+      ultimoEnvio = agora;
+
+      HTTPClient http;
+      WiFiClient client;
+      String url = "http://192.168.47.41/Tecnologia-Aplicada-Torra-do-Caf-/DadosTeste.php";
+      http.begin(client, url);
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      String dados = "valor=" + String(contador);
+      int resposta = http.POST(dados);
+
+      if (resposta > 0) {
+        String retorno = http.getString();
+        Serial.println("Resposta do servidor:");
+        Serial.println(retorno);
+      } else {
+        Serial.println("❌ Erro ao enviar dados.");
+      }
+
+      http.end();
+      contador++;
+    }
+  }
 }
