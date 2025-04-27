@@ -44,6 +44,25 @@ a:hover {
     color: #66bb6a;
 }
 
+/* Password Container */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    padding-right: 30px; /* Space for the icon */
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 /* Image Placeholder */
 .image-placeholder {
     width: 100%;

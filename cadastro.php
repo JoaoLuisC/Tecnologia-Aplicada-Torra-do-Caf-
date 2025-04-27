@@ -7,26 +7,10 @@
     <link rel="icon" href="images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/login_style.css">
+    <link rel="stylesheet" href="styles/cadastro_style.css">
 
     <style>
-        .password-container {
-            position: relative;
-            width: 100%;
-        }
-
-        .password-container input {
-            padding-right: 30px; /* Espaço para o ícone */
-            width: 100%;
-        }
-
-        .eye-icon {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
+        
     </style>
 </head>
 <body>
