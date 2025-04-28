@@ -10,6 +10,7 @@
 </head>
 <body>
     <main class="container-fluid vh-100">
+
         <div class="row h-100">
             <!-- Seção de imagens a definir -->
             <section class="col-md-7 d-flex align-items-center justify-content-center">
@@ -51,6 +52,7 @@
                 </div>
             </section>
         </div>
+
     </main>
 
     <footer class="bg-dark text-white text-center py-3">
@@ -60,4 +62,4 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>\autenticar.php
+</html>
