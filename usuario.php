@@ -6,10 +6,6 @@
     <title>Usuario</title>
     <link rel="icon" href="images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-
-    </style>
 </head>
 <body>
     
