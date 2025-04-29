@@ -1,8 +1,6 @@
 <?php
-// Conecta ao banco
-require_once 'conexao.php';
+require_once '../configs/conexao.php';
 
-// Função para mostrar erros de forma amigável
 function redirecionaComErro($mensagem) {
     echo "<script>alert('$mensagem'); window.history.back();</script>";
     exit;
@@ -10,7 +8,6 @@ function redirecionaComErro($mensagem) {
 
 // Verifica se veio pelo método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Pega e limpa os dados
     $nome = trim($_POST['firstName']);
     $sobrenome = trim($_POST['lastName']);
     $email = trim($_POST['email']);
@@ -18,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = trim($_POST['password']);
     $confirmSenha = trim($_POST['confirmPassword']);
 
-    // Verificações básicas
     if (empty($nome) || empty($sobrenome) || empty($email) || empty($confirmEmail) || empty($senha) || empty($confirmSenha)) {
         redirecionaComErro("Todos os campos são obrigatórios!");
     }
@@ -39,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirecionaComErro("As senhas digitadas não conferem.");
     }
 
-    // Verifica se o email já existe
     $sql_verifica = "SELECT id FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($sql_verifica);
     if ($stmt) {
@@ -51,10 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirecionaComErro("Erro no banco de dados.");
     }
 
-    // Criptografa a senha
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Insere o usuário
     $sql = "INSERT INTO usuarios (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 

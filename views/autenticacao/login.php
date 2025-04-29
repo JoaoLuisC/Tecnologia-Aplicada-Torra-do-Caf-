@@ -6,7 +6,7 @@
     <title>Página de Login</title>
     <link rel="icon" href="images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/login_style.css">
+    <link rel="stylesheet" href="../public/css/login_style.css">
 </head>
 <body>
     <main class="container-fluid vh-100">
@@ -24,13 +24,13 @@
                     <!-- Cabeçalho-->
                     <header class="text-center mb-4">
                         <div class="image-placeholder mb-3">
-                            <img src="images/imagem_login_page_cafe.png" alt="Imagem de Login" />
+                            <img src="../public/images/imagem_login_page_cafe.png" alt="Imagem de Login" />
                         </div>
                         <h2>Bem-vindo!</h2>
                         <p>Conecte-se ao mundo do café e tecnologia.</p>
                     </header>
                     <!-- Formulário de login -->
-                    <form action="autenticar.php" method="POST">
+                    <form action="../app/helpers/autenticar.php" method="POST">
                         <!-- Campo de E-mail -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Endereço de Email</label>
@@ -57,11 +57,12 @@
 
                     <!-- Mensagens de erro (se houver) -->
                     <?php
-                    if (isset($_GET['erro'])) {
-                        $erro = $_GET['erro'];
-                        echo "<div class='alert alert-danger mt-3 text-center'>$erro</div>";
-                    }
+                        if (isset($_GET['erro'])) {
+                            $erro = $_GET['erro'];
+                            echo "<div class='alert alert-danger mt-3 text-center'>$erro</div>";
+                        }
                     ?>
+
                 </div>
             </section>
         </div>

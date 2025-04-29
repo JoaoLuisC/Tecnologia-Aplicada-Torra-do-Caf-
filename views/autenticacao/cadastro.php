@@ -7,7 +7,7 @@
     <link rel="icon" href="images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/cadastro_style.css">
+    <link rel="stylesheet" href="../public/css/cadastro_style.css">
 </head>
 <body>
     <main class="container-fluid vh-100">
@@ -25,7 +25,7 @@
                     <!-- Cabeçalho -->
                     <header class="text-center mb-4">
                         <div class="image-placeholder mb-3">
-                            <img src="images/imagem_login_page_cafe.png" alt="Imagem de Cadastro" />
+                            <img src="../public/images/imagem_login_page_cafe.png" alt="Imagem de Cadastro" />
                         </div>
                         <h2>Crie sua conta</h2>
                         <p>Junte-se ao mundo do café e tecnologia.</p>
@@ -35,7 +35,7 @@
                     <div id="alertaErro" class="alert alert-danger d-none" role="alert"></div>
 
                     <!-- Formulário de cadastro -->
-                    <form method="POST" action="processa_cadastro.php" id="formCadastro">
+                    <form method="POST" action="../app/controllers/processa_cadastro.php" id="formCadastro">
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="firstName" class="form-label">Nome</label>
@@ -88,12 +88,9 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 - Desenvolvido por João Luís Cardoso.</p>
-        <p>&copy; IFSULDEMINAS - Campus Machado</p>
-    </footer>
+    <?php include 'templates/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="scripts/cadastro.js"></script>
+    <script src="../public/js/cadastro.js"></script>
 </body>
 </html>

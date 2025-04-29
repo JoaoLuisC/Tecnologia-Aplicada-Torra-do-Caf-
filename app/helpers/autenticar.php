@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexao.php'; // Conecta ao banco
+include '../configs/conexao.php'; // Conecta ao banco
 
 // Função para redirecionar com erro
 function redirecionaComErro($mensagem) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['usuario_nome'] = $usuario['nome'];
 
                 // Redireciona para a página restrita
-                header("Location: usuario.php");
+                header("Location: ../../views/usuario.php");
                 exit;
             } else {
                 redirecionaComErro("Senha incorreta.");

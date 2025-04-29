@@ -1,17 +1,6 @@
 <?php
-session_start();
-require 'conexao.php';
-
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuario_nome'])) {
-    header('Location: login.php');
-    exit;
-}
-
-$nomeUsuario = $_SESSION['usuario_nome'];
-$usuarioId = $_SESSION['usuario_id']; 
-
-
+    include '../app/helpers/verificar_sessao.php';
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,29 +9,13 @@ $usuarioId = $_SESSION['usuario_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuário</title>
-    <link rel="icon" href="images/graos-de-cafe.png" type="image/x-icon">
+    <link rel="icon" href="../public/images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="home.php">
-                <img src="images/michelangeloTXT.png" alt="Logo" style="height: 40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item me-3"><a class="nav-link" href="login.php">Entrar</a></li>
-                    <li class="nav-item me-3"><a class="nav-link" href="cadastro.php">Cadastro</a></li>
-                    <li class="nav-item me-3"><a class="nav-link" href="#">Torras</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <?php include "templates/navbar.php"; ?>
+    
     <main class="container mt-5">
 
         <!-- TÍTULO -->
@@ -128,10 +101,7 @@ $usuarioId = $_SESSION['usuario_id'];
 
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 - Desenvolvido por João Luís Cardoso.</p>
-        <p>&copy; IFSULDEMINAS - Campus Machado</p>
-    </footer>
+    <?php include "templates/footer.php"; ?>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -155,7 +125,7 @@ $usuarioId = $_SESSION['usuario_id'];
                 .map(cb => cb.value);
 
             if (idsSelecionados.length > 0) {
-                fetch('excluir_torradores.php', {
+                fetch('../app/controllers/excluir_torradores.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ ids: idsSelecionados })
