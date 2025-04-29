@@ -20,24 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepara a consulta para verificar o e-mail
     $sql = "SELECT id, nome, senha FROM usuarios WHERE email = ?";
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->execute([$email]);
 
-        if ($stmt->num_rows > 0) {
+        // Busca o usuário
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
             // Usuário encontrado
-            $stmt->bind_result($id, $nome, $senhaCriptografada);
-            $stmt->fetch();
-
-            // Verifica a senha
-            if (password_verify($senha, $senhaCriptografada)) {
+            if (password_verify($senha, $usuario['senha'])) {
                 // Senha correta - Inicia a sessão
-                $_SESSION['usuario_id'] = $id;
-                $_SESSION['usuario_nome'] = $nome;
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_nome'] = $usuario['nome'];
 
                 // Redireciona para a página restrita
-                header("Location: dashboard.php");
+                header("Location: usuario.php");
                 exit;
             } else {
                 redirecionaComErro("Senha incorreta.");
@@ -45,8 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             redirecionaComErro("E-mail não cadastrado.");
         }
-
-        $stmt->close();
     } else {
         redirecionaComErro("Erro na consulta ao banco de dados.");
     }

@@ -54,12 +54,12 @@ $nomeUsuario = $_SESSION['usuario_nome'];
             <!-- Lateral: Adicionar e Gerenciar Sensores -->
             <div class="col-md-3 d-flex flex-column gap-3">
                 <a href="adicionar_sensores.php" class="btn btn-outline-success btn-lg p-4">
-                    <strong>Adicionar - Torrador</strong><br>
-                    <small>Conecte um novo Torrador ao sistema</small>
+                    <strong>Adicionar - Sensor</strong><br>
+                    <small>Conecte um novo sensor ao sistema</small>
                 </a>
-                <a href="gerenciar_torradores.php" class="btn btn-outline-primary btn-lg p-4">
-                    <strong>Gerenciar Torradores</strong><br>
-                    <small>Visualize e edite seus torradores existentes</small>
+                <a href="gerenciar_sensores.php" class="btn btn-outline-primary btn-lg p-4">
+                    <strong>Gerenciar Sensores</strong><br>
+                    <small>Visualize e edite sensores existentes</small>
                 </a>
             </div>
 

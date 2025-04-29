@@ -41,16 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verifica se o email já existe
     $sql_verifica = "SELECT id FROM usuarios WHERE email = ?";
-    if ($stmt = $conn->prepare($sql_verifica)) {
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows > 0) {
+    $stmt = $conn->prepare($sql_verifica);
+    if ($stmt) {
+        $stmt->execute([$email]);
+        if ($stmt->rowCount() > 0) {
             redirecionaComErro("Este e-mail já está cadastrado.");
         }
-        $stmt->close();
     } else {
-        redirecionaComErro("Erro no banco de dados: " . $conn->error);
+        redirecionaComErro("Erro no banco de dados.");
     }
 
     // Criptografa a senha
@@ -58,19 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insere o usuário
     $sql = "INSERT INTO usuarios (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
 
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssss", $nome, $sobrenome, $email, $senhaCriptografada);
-
-        if ($stmt->execute()) {
+    if ($stmt) {
+        if ($stmt->execute([$nome, $sobrenome, $email, $senhaCriptografada])) {
             echo "<script>alert('Cadastro realizado com sucesso!'); window.location.href = 'login.php';</script>";
             exit;
         } else {
-            redirecionaComErro("Erro ao cadastrar: " . $stmt->error);
+            redirecionaComErro("Erro ao cadastrar: " . implode(", ", $stmt->errorInfo()));
         }
-        $stmt->close();
     } else {
-        redirecionaComErro("Erro no banco de dados: " . $conn->error);
+        redirecionaComErro("Erro no banco de dados.");
     }
 } else {
     redirecionaComErro("Requisição inválida.");

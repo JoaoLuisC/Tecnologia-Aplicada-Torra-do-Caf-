@@ -38,8 +38,9 @@ CREATE TABLE IF NOT EXISTS `analise_sensorial` (
   `nota_total` decimal(5,2) GENERATED ALWAYS AS (`aroma_final` + `sabor` + `acidez` + `corpo` + `retro_gosto` + `equilibrio` + `docura` + `uniformidade` + `defeitos` + `balanceamento`) STORED,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `cafe_id` (`cafe_id`),
-  CONSTRAINT `analise_sensorial_ibfk_1` FOREIGN KEY (`cafe_id`) REFERENCES `qualidade_cafe` (`id`)
+  KEY `fk_analise_qualidade` (`cafe_id`),
+  CONSTRAINT `analise_sensorial_ibfk_1` FOREIGN KEY (`cafe_id`) REFERENCES `qualidade_cafe` (`id`),
+  CONSTRAINT `fk_analise_qualidade` FOREIGN KEY (`cafe_id`) REFERENCES `qualidade_cafe` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -52,7 +53,39 @@ CREATE TABLE IF NOT EXISTS `qualidade_cafe` (
   `fermentacao` enum('Natural','Fermentado','CD') NOT NULL,
   `finalidade` enum('Espresso','Filtro','Amostra') NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `usuario_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_qualidade_usuario` (`usuario_id`),
+  CONSTRAINT `fk_qualidade_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela michelangelo_bd.torradores
+CREATE TABLE IF NOT EXISTS `torradores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `fk_usuario` (`usuario_id`),
+  CONSTRAINT `fk_torradores_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela michelangelo_bd.torras
+CREATE TABLE IF NOT EXISTS `torras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `qualidade_cafe_id` int(11) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `fk_usuario` (`usuario_id`),
+  KEY `fk_qualidade` (`qualidade_cafe_id`),
+  CONSTRAINT `fk_torras_qualidade` FOREIGN KEY (`qualidade_cafe_id`) REFERENCES `qualidade_cafe` (`id`),
+  CONSTRAINT `fk_torras_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -67,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
