@@ -3,7 +3,7 @@
 
     // Verifica se o usuário está logado
     if (!isset($_SESSION['usuario_nome'])) {
-        header('Location: login.php');
+        header('Location: ../autenticacao/login.php');
         exit;
     }
 
@@ -16,12 +16,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario</title>
-    <link rel="icon" href="../public/images/graos-de-cafe.png" type="image/x-icon">
+    <link rel="icon" href="../../public/images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     
-    <?php include 'templates/navbar.php'; ?>
+    <?php include '../templates/navbar.php'; ?>
 
     <main class="container mt-5">
 
@@ -37,11 +37,11 @@
         <div class="row mt-5">
             <!-- Lateral: Adicionar e Gerenciar Sensores -->
             <div class="col-md-3 d-flex flex-column gap-3">
-                <a href="adicionar_sensores.php" class="btn btn-outline-success btn-lg p-4">
+                <a href="../torradores/adicionar.php" class="btn btn-outline-success btn-lg p-4">
                     <strong>Adicionar - Torrador</strong><br>
                     <small>Conecte um novo Torrador ao sistema</small>
                 </a>
-                <a href="gerenciar_torradores.php" class="btn btn-outline-primary btn-lg p-4">
+                <a href="../torradores/gerenciar.php" class="btn btn-outline-primary btn-lg p-4">
                     <strong>Gerenciar Torradores</strong><br>
                     <small>Visualize e edite seus torradores existentes</small>
                 </a>
@@ -80,11 +80,11 @@
         <div class="row mt-5">
             <!-- Lateral: Adicionar e Gerenciar Torras -->
             <div class="col-md-3 d-flex flex-column gap-3">
-                <a href="adicionar_torras.php" class="btn btn-outline-success btn-lg p-4">
+                <a href="../torras/adicionar.php" class="btn btn-outline-success btn-lg p-4">
                     <strong>Adicionar Torra</strong><br>
                     <small>Cadastre uma nova torra de café</small>
                 </a>
-                <a href="gerenciar_torras.php" class="btn btn-outline-primary btn-lg p-4">
+                <a href="../torras/gerenciar.php" class="btn btn-outline-primary btn-lg p-4">
                     <strong>Gerenciar Torras</strong><br>
                     <small>Visualize e edite suas torras</small>
                 </a>
@@ -139,7 +139,7 @@
         <div class="row mt-5 align-items-center mb-5">
             <!-- Botão Configurações -->
             <div class="col-md-4">
-            <a href="configuracoes.php" class="btn btn-outline-dark btn-lg w-100 p-4">
+            <a href="configurar.php" class="btn btn-outline-dark btn-lg w-100 p-4">
                 <strong>Configurações</strong><br>
                 <small>Preferências da conta</small>
             </a>
@@ -147,7 +147,7 @@
 
             <!-- Campo de busca -->
             <div class="col-md-4">
-            <a href="configuracoes.php" class="btn btn-outline-dark btn-lg w-100 p-4">
+            <a href="#" class="btn btn-outline-dark btn-lg w-100 p-4">
                 <strong>Buscar Torras</strong><br>
                 <small>Encontre a torra perfeita</small>
             </a>
@@ -155,7 +155,7 @@
 
             <!-- Botão Sair -->
             <div class="col-md-4">
-            <a href="logout.php" class="btn btn-outline-danger btn-lg w-100 p-4">
+            <a href="#" class="btn btn-outline-danger btn-lg w-100 p-4">
                 <strong>Sair da Conta</strong><br>
                 <small>Encerrar sessão</small>
             </a>
@@ -164,6 +164,6 @@
 
     </main>
 
-    <?php include 'templates/footer.php'; ?>
+    <?php include '../templates/footer.php'; ?>
 </body>
 </html>

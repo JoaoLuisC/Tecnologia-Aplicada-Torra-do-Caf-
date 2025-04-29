@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['usuario_nome'] = $usuario['nome'];
 
                 // Redireciona para a página restrita
-                header("Location: ../../views/usuario.php");
+                header("Location: ../../views/usuario/dashboard.php");
                 exit;
             } else {
                 redirecionaComErro("Senha incorreta.");
