@@ -6,7 +6,7 @@
     <title>Michellangelo</title>
     <link rel="icon" href="../public/images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/home_style.css">
+    <link rel="stylesheet" href="../public/css/index_style/index.css">
 
     <style>
         header {
@@ -17,7 +17,23 @@
 </head>
 <body>
     
-    <?php include 'templates/navbar.php'; ?>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../index.php">
+                <img src="../public/images/michelangeloTXT.png" alt="Logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item me-3"><a class="nav-link" href="autenticacao/login.php">Entrar</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="autenticacao/cadastro.php">Cadastro</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="usuario/dashboard.php">Torras</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
     <main>
 

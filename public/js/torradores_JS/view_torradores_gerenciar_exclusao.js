@@ -17,7 +17,7 @@ confirmarExcluir.addEventListener('click', () => {
         .map(cb => cb.value);
 
     if (idsSelecionados.length > 0) {
-        fetch('../app/controllers/excluir_torradores.php', {
+        fetch('../../app/controllers/excluir_torradores.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ids: idsSelecionados })
