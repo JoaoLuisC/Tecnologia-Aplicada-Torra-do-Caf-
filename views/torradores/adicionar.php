@@ -39,11 +39,12 @@
                     ?>
                 </div>
 
-                <form action="../../app/controllers/torradores_controller.php" method="POST">
+                <form action="../../app/controllers/adicionar_torrador.php" method="POST">
                     <div class="mb-3">
                         <label for="nomeTorrador" class="form-label">Nome do Torrador</label>
                         <input type="text" class="form-control" id="nomeTorrador" name="nomeTorrador" placeholder="Digite o nome do torrador" required>
                     </div>
+                    <input type="hidden" name="codigoConexao" value="<?php echo $codigoConexao; ?>">
                     <button type="submit" class="btn btn-primary w-100">Adicionar Torrador</button>
                 </form>
             </div>
@@ -52,7 +53,7 @@
         <!-- BOTÃO VOLTAR -->
         <div class="row mt-5 align-items-center justify-content-center mb-5">
             <div class="col-md-6 text-center">
-                <a href="gerenciar.php" class="btn btn-outline-dark btn-lg w-100 p-4">
+                <a onclick="history.back()" class="btn btn-outline-dark btn-lg w-100 p-4">
                     <strong>Voltar</strong><br>
                 </a>
             </div>
@@ -63,5 +64,9 @@
     <?php include "../templates/footer.php"; ?>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
+
+

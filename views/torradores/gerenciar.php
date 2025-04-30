@@ -10,6 +10,7 @@
     <title>Usuário</title>
     <link rel="icon" href="../../public/images/graos-de-cafe.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/torradores_style/adicionar.css">
 </head>
 <body>
 
@@ -75,7 +76,7 @@
                     $criadoEm = date('d/m/Y', strtotime($row['criado_em']));
                     echo '
                     <div class="col-md-4 mb-4 position-relative">
-                        <a href="sensor.php?id=' . $torradorId . '" class="btn btn-outline-secondary btn-lg p-4 w-100 h-100 text-start">
+                        <a href="editar.php?id=' . $torradorId . '" class="btn btn-outline-secondary btn-lg p-4 w-100 h-100 text-start">
                             <strong>' . $torradorNome . '</strong><br>
                             <small>Adicionado no dia ' . $criadoEm . '</small>
                         </a>
