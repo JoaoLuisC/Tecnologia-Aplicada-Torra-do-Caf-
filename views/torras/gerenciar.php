@@ -1,13 +1,13 @@
 <?php
-session_start();
+    session_start();
 
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuario_nome'])) {
-    header('Location: login.php');
-    exit;
-}
+    // Verifica se o usuário está logado
+    if (!isset($_SESSION['usuario_nome'])) {
+        header('Location: login.php');
+        exit;
+    }
 
-$nomeUsuario = $_SESSION['usuario_nome'];
+    $nomeUsuario = $_SESSION['usuario_nome'];
 ?>
 
 <!DOCTYPE html>
